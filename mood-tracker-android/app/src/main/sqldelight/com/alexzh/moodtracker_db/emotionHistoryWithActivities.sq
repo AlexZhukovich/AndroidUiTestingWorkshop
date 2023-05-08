@@ -1,0 +1,30 @@
+CREATE VIEW emotionHistoryWithActivities AS
+SELECT
+    emotionHistoryEntity.id,
+    emotionHistoryEntity.date,
+    emotionHistoryEntity.note,
+    emotionEntity.id AS emotionId,
+    emotionEntity.name AS emotionName,
+    emotionEntity.happinessLevel AS emotionHappinessLevel,
+    emotionEntity.icon AS emotionIcon,
+    GROUP_CONCAT(activityEntity.id) AS activityIds
+FROM emotionHistoryToActivityEntity
+JOIN emotionHistoryEntity ON emotionHistoryToActivityEntity.emotionHistoryId = emotionHistoryEntity.id
+JOIN emotionEntity ON emotionHistoryEntity.emotionId = emotionEntity.id
+JOIN activityEntity ON emotionHistoryToActivityEntity.activityId = activityEntity.id
+GROUP BY emotionHistoryEntity.id
+ORDER BY emotionHistoryEntity.date ASC;
+
+getEmotionHistoryWithActivities:
+SELECT *
+FROM emotionHistoryWithActivities;
+
+getEmotionHistoryWithActivitiesById:
+SELECT *
+FROM emotionHistoryWithActivities
+WHERE id = :id;
+
+getEmotionHistoryWithActivitiesByDate:
+SELECT *
+FROM emotionHistoryWithActivities
+WHERE date >= :startDate AND date <= :endDate;

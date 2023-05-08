@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">MoodTracker</string>
+
+    <!-- Emotions -->
+    <string name="emotions_angry_contentDescription">Angry</string>
+    <string name="emotions_confused_contentDescription">Confused</string>
+    <string name="emotions_neutral_contentDescription">Neutral</string>
+    <string name="emotions_happy_contentDescription">Happy</string>
+    <string name="emotions_excited_contentDescription">Excited</string>
+    <string name="emotions_unknown_contentDescription">Unknown</string>
+
+    <!-- Navigation -->
+    <string name="navigation_back_contentDescription">Back</string>
+    <string name="navigation_today_label">Today</string>
+    <string name="navigation_statistics_label">Stats</string>
+    <string name="navigation_profile_label">Profile</string>
+    <string name="navigation_settings_label">Settings</string>
+
+    <!-- General accessibility -->
+    <string name="passwordField_hidePassword_label">Hide password</string>
+    <string name="passwordField_showPassword_label">Show password</string>
+
+    <!-- Today -->
+    <string name="todayScreen_add_label">Add</string>
+    <string name="todayScreen_emotions_label">Emotions</string>
+    <string name="todayScreen_noData_label">"No data"</string>
+
+    <!-- Add mood -->
+    <string name="addMoodScreen_title">How are you?</string>
+    <string name="addMoodScreen_delete_contentDescription">Delete</string>
+    <string name="addMoodScreen_date_label">Date</string>
+    <string name="addMoodScreen_time_label">Time</string>
+    <string name="addMoodScreen_note_label">Note</string>
+    <string name="addMoodScreen_save_title">Save</string>
+    <string name="addMoodScreen_error_selectEmotionAndActivity">Please select emotion and activity</string>
+
+    <!-- Statistics -->
+    <string name="statisticsScreen_title">Statistics</string>
+    <string name="statisticsScreen_moodChart_label">Mood Chart</string>
+    <string name="statisticsScreen_currentWeek_label">Current week</string>
+    <string name="statisticsScreen_previousWeek_label">Previous week</string>
+    <string name="statisticsScreen_nextWeek_label">Next week</string>
+    <string name="statisticsScreen_noData_label">"No data"</string>
+
+    <!-- Profile -->
+    <string name="profileScreen_title">Profile</string>
+    <string name="profileScreen_logout_contentDescription">Logout</string>
+    <string name="profileScreen_createAccount_button">Create Account</string>
+    <string name="profileScreen_login_button">Login</string>
+
+    <!-- Settings -->
+    <string name="settingsScreen_title">Settings</string>
+    <string name="settingsScreen_dateTimeFormatCategory_title">Date and time format</string>
+    <string name="settingsScreen_dateTimeFormatCategory_use24hFormat_title">Use 24h format</string>
+    <string name="settingsScreen_dateTimeFormatCategory_use24hFormat_subtitle">13:00</string>
+
+    <!-- Create Account -->
+    <string name="createAccountScreen_title">Create Account</string>
+    <string-array name="createAccountScreen_login_label">
+        <item>Already have an account?\u0020</item>
+        <item>Login</item>
+    </string-array>
+    <string-array name="createAccountScreen_useOfflineAccount">
+        <item>I want to use\u0020</item>
+        <item>offline account</item>
+    </string-array>
+    <string name="createAccountScreen_createAccount_button">CREATE ACCOUNT</string>
+    <string name="createAccountScreen_error_userAlreadyExist_label">User already exists</string>
+    <string name="createAccountScreen_error_emailIsTooShort_label">The \'Email\' should be at least four characters long</string>
+    <string name="createAccountScreen_error_nameIsTooShort_label">The \'Name\' should be at least four characters long</string>
+    <string name="createAccountScreen_error_passwordIsTooShort_label">The \'Password\' should be at least four characters long</string>
+
+    <!-- Login -->
+    <string name="loginScreen_title">Login</string>
+    <string-array name="loginScreen_createAccount_label">
+        <item>Don\'t have an account?\u0020</item>
+        <item>Create Account</item>
+    </string-array>
+    <string-array name="loginScreen_useOfflineAccount">
+        <item>I want to use\u0020</item>
+        <item>offline account</item>
+    </string-array>
+    <string name="loginScreen_login_button">LOGIN</string>
+    <string name="loginScreen_error_emailIsTooShort_label">The \'Email\' should be at least four characters long</string>
+    <string name="loginScreen_error_passwordIsTooShort_label">The \'Password\' should be at least four characters long</string>
+    <string name="loginScreen_error_invalidCredentials_label">Invalid credentials</string>
+
+    <!-- Documentation -->
+    <string name="documentationScreen_title">Read more…</string>
+
+    <!-- Generic text fields -->
+    <string name="genericTextField_name_label">Name</string>
+    <string name="genericTextField_name_placeholder">Enter your name</string>
+    <string name="genericTextField_name_contentDescription">Name</string>
+    <string name="genericTextField_email_label">Email</string>
+    <string name="genericTextField_email_placeholder">Enter your email</string>
+    <string name="genericTextField_email_contentDescription">Email</string>
+    <string name="genericTextField_password_label">Password</string>
+    <string name="genericTextField_password_placeholder">Enter your password</string>
+    <string name="genericTextField_password_contentDescription">Password</string>
+
+    <!-- Generic errors -->
+    <string name="genericError_emailIsNotValid_label">The \'Email\' value should be in [test]@[test].[test] format</string>
+    <string name="genericError_serviceUnavailable_label">Server is unavailable</string>
+    <string name="genericError_unauthorizedUser_label">Please log in, again.</string>
+    <string name="genericError_somethingWentWrong_label">Something went wrong</string>
+</resources>

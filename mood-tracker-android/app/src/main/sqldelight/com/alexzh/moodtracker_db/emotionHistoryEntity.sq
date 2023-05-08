@@ -1,0 +1,31 @@
+import java.time.ZonedDateTime;
+
+CREATE TABLE emotionHistoryEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    date INTEGER AS ZonedDateTime NOT NULL,
+    emotionId INTEGER NOT NULL,
+    note TEXT,
+
+    FOREIGN KEY (emotionId)
+        REFERENCES emotionEntity(id)
+        ON DELETE CASCADE
+);
+
+CREATE INDEX emotionHistoryEntity_date ON emotionHistoryEntity(date);
+
+getLastInsertedRowId:
+SELECT last_insert_rowid();
+
+getEmotionHistoryById:
+SELECT *
+FROM emotionHistoryEntity
+WHERE id = :id;
+
+insert:
+INSERT OR REPLACE
+INTO emotionHistoryEntity
+VALUES (?, ?, ?, ?);
+
+delete:
+DELETE FROM emotionHistoryEntity
+WHERE id = :id;

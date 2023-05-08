@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="dateTimeFormat_category"
+        android:title="@string/settingsScreen_dateTimeFormatCategory_title">
+
+        <CheckBoxPreference
+            android:key="use24hours_preference"
+            android:title="@string/settingsScreen_dateTimeFormatCategory_use24hFormat_title"
+            android:summary="@string/settingsScreen_dateTimeFormatCategory_use24hFormat_subtitle"
+            android:icon="@drawable/ic_clock"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

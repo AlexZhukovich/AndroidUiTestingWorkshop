@@ -1,0 +1,45 @@
+CREATE TABLE activityEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    icon TEXT NOT NULL
+);
+
+CREATE INDEX activityEntity_name ON activityEntity(name);
+
+getLastInsertedRowId:
+SELECT last_insert_rowid();
+
+getActionById:
+SELECT *
+FROM activityEntity
+WHERE id = :id;
+
+getActivities:
+SELECT *
+FROM activityEntity;
+
+insert:
+INSERT OR REPLACE
+INTO activityEntity
+VALUES (?, ?, ?);
+
+delete:
+DELETE FROM activityEntity
+WHERE id = :id;
+
+--
+-- INSERT DEFAULT DATA
+--
+INSERT INTO activityEntity(id, name, icon) VALUES (1, 'sport', 'activity-sport');
+INSERT INTO activityEntity(id, name, icon) VALUES (2, 'work', 'activity-work');
+INSERT INTO activityEntity(id, name, icon) VALUES (3, 'gardening', 'activity-gardening');
+INSERT INTO activityEntity(id, name, icon) VALUES (4, 'relax', 'activity-relax');
+INSERT INTO activityEntity(id, name, icon) VALUES (5, 'reading', 'activity-reading');
+INSERT INTO activityEntity(id, name, icon) VALUES (6, 'gaming', 'activity-gaming');
+INSERT INTO activityEntity(id, name, icon) VALUES (7, 'shopping', 'activity-shopping');
+INSERT INTO activityEntity(id, name, icon) VALUES (8, 'traveling', 'activity-traveling');
+INSERT INTO activityEntity(id, name, icon) VALUES (9, 'friends', 'activity-friends');
+INSERT INTO activityEntity(id, name, icon) VALUES (10, 'family', 'activity-family');
+INSERT INTO activityEntity(id, name, icon) VALUES (11, 'walking', 'activity-walking');
+INSERT INTO activityEntity(id, name, icon) VALUES (12, 'cleaning', 'activity-cleaning');
+INSERT INTO activityEntity(id, name, icon) VALUES (13, 'cooking', 'activity-cooking');

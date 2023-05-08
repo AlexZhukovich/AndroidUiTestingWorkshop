@@ -1,0 +1,12 @@
+CREATE VIEW dayToHappinessLevel AS
+SELECT
+    emotionHistoryEntity.date,
+    emotionEntity.happinessLevel
+FROM emotionHistoryEntity, emotionEntity
+WHERE emotionHistoryEntity.emotionId = emotionEntity.id
+ORDER BY emotionHistoryEntity.date ASC;
+
+getDayToHappinessLevel:
+SELECT *
+FROM dayToHappinessLevel
+WHERE date >= :startDate AND date <= :endDate;

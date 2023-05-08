@@ -1,0 +1,38 @@
+CREATE TABLE emotionEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    happinessLevel INTEGER AS Int NOT NULL,
+    icon TEXT NOT NULL
+);
+
+CREATE INDEX emotionEntity_name ON emotionEntity(name);
+
+getLastInsertedRowId:
+SELECT last_insert_rowid();
+
+getEmotionById:
+SELECT *
+FROM emotionEntity
+WHERE id = :id;
+
+getEmotions:
+SELECT *
+FROM emotionEntity;
+
+insert:
+INSERT OR REPLACE
+INTO emotionEntity
+VALUES (?, ?, ?, ?);
+
+delete:
+DELETE FROM emotionEntity
+WHERE id = :id;
+
+--
+-- INSERT DEFAULT DATA
+--
+INSERT INTO emotionEntity(id, name, happinessLevel, icon) VALUES (1, 'angry', '1', 'emotion-angry');
+INSERT INTO emotionEntity(id, name, happinessLevel, icon) VALUES (2, 'confused', '2', 'emotion-confused');
+INSERT INTO emotionEntity(id, name, happinessLevel, icon) VALUES (3, 'neutral', '3', 'emotion-neutral');
+INSERT INTO emotionEntity(id, name, happinessLevel, icon) VALUES (4, 'happy', '4', 'emotion-happy');
+INSERT INTO emotionEntity(id, name, happinessLevel, icon) VALUES (5, 'excited', '5', 'emotion-excited');

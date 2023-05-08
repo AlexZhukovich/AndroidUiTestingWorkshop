@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_today">
+
+    <fragment
+        android:id="@+id/navigation_today"
+        android:name="com.alexzh.moodtracker.presentation.feature.today.TodayFragment"
+        android:label="TodayFragment" >
+        <action
+            android:id="@+id/action_today_to_addMood"
+            app:destination="@id/navigation_addMood" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_addMood"
+        android:name="com.alexzh.moodtracker.presentation.feature.addmood.AddMoodFragment"
+        android:label="@string/addMoodScreen_title">
+            <argument
+                android:name="emotionHistoryId"
+                app:argType="long"
+                android:defaultValue="-1L"/>
+            <action
+                android:id="@+id/action_addMood_to_today"
+                app:destination="@id/navigation_today"
+                app:popUpTo="@id/navigation_today"
+                app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.alexzh.moodtracker.presentation.feature.profile.ProfileFragment"
+        android:label="@string/profileScreen_title" >
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_profile_to_createAccount"
+            app:destination="@id/navigation_createAccount" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_createAccount"
+        android:name="com.alexzh.moodtracker.presentation.feature.auth.createaccount.CreateAccountFragment"
+        android:label="@string/createAccountScreen_title" >
+        <action
+            android:id="@+id/action_createAccount_to_today"
+            app:destination="@id/navigation_today"
+            app:popUpTo="@id/navigation_today"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_createAccount_to_login"
+            app:destination="@id/navigation_login"
+            app:popUpTo="@id/navigation_login"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_createAccount_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.alexzh.moodtracker.presentation.feature.auth.login.LoginFragment"
+        android:label="@string/loginScreen_title" >
+        <action
+            android:id="@+id/action_login_to_today"
+            app:destination="@id/navigation_today"
+            app:popUpTo="@id/navigation_today"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_login_to_createAccount"
+            app:destination="@id/navigation_createAccount"
+            app:popUpTo="@id/navigation_createAccount"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_login_to_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.alexzh.moodtracker.presentation.feature.settings.SettingsFragment"
+        android:label="@string/settingsScreen_title" />
+    <fragment
+        android:id="@+id/navigation_statistics"
+        android:name="com.alexzh.moodtracker.presentation.feature.stats.StatisticsFragment"
+        android:label="@string/statisticsScreen_title" />
+
+</navigation>

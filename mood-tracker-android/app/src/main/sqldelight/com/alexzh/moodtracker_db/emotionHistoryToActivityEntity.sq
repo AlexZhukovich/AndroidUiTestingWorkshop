@@ -1,0 +1,33 @@
+CREATE TABLE emotionHistoryToActivityEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    emotionHistoryId INTEGER NOT NULL,
+    activityId INTEGER NOT NULL,
+
+    FOREIGN KEY (emotionHistoryId)
+        REFERENCES emotionHistoryEntity(id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (activityId)
+        REFERENCES activityEntity(id)
+        ON DELETE CASCADE
+);
+
+getLastInsertedRowId:
+SELECT last_insert_rowid();
+
+getActivitiesByEmotionHistory:
+SELECT *
+FROM emotionHistoryToActivityEntity
+WHERE emotionHistoryId = :emotionHistoryId;
+
+insert:
+INSERT OR REPLACE
+INTO emotionHistoryToActivityEntity
+VALUES (?, ?, ?);
+
+delete:
+DELETE FROM emotionHistoryToActivityEntity
+WHERE id = :id;
+
+deleteByEmotionHistoryIdAndActivityId:
+DELETE FROM emotionHistoryToActivityEntity
+WHERE emotionHistoryId = :emotionHistoryId AND activityId = :activityId;
