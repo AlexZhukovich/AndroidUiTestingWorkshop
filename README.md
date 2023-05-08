@@ -18,6 +18,7 @@ The **"mood-tracker-api"** is an API that allows you to store information about 
 To configure and run an "Android app" and "API" projects, I recommend using the following IDEs:
 - [Android Studio](https://developer.android.com/studio)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
+- [Maestro](https://maestro.mobile.dev/getting-started/installing-maestro)
 
 ## How to set up the projects
 
