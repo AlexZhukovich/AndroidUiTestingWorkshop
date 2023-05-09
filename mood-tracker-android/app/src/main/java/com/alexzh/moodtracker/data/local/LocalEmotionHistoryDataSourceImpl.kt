@@ -170,7 +170,7 @@ class LocalEmotionHistoryDataSourceImpl(
             db.transaction {
                 val activitiesToDelete = emotionHistory.activities.map { it.id }
                 activitiesToDelete.forEach {
-                    emotionHistoryToActivityQueries.delete(it)
+                    emotionHistoryToActivityQueries.deleteByEmotionHistoryIdAndActivityId(emotionHistory.id, it)
                 }
 
                 emotionHistoryQueries.delete(emotionHistory.id)
