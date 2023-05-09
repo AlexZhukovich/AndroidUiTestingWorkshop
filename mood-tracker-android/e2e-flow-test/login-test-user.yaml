@@ -1,0 +1,19 @@
+appId: com.alexzh.moodtracker
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "com.alexzh.moodtracker:id/navigation_bar_item_icon_container"
+    index: 2
+- tapOn: "Login"
+- tapOn: "Email"
+- inputText: "test@test.com"
+- tapOn: "Password"
+- inputText: "test123"
+- tapOn:
+    text: "LOGIN"
+    index: 1
+- assertVisible: "Test User"
+- assertVisible: "test@test.com"
+- tapOn:
+    id: "com.alexzh.moodtracker:id/logout_action"
