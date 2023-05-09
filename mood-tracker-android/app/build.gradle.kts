@@ -45,13 +45,13 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.androidXComposeCompiler.get()
     }
     testOptions {
-        packaging {
+        packagingOptions {
             jniLibs {
                 useLegacyPackaging = true
             }
         }
     }
-    packaging {
+    packagingOptions {
         resources.excludes.apply {
             add("META-INF/LICENSE.md")
             add("META-INF/LICENSE-notice.md")
