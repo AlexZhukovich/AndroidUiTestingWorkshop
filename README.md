@@ -39,8 +39,8 @@ I recommend to an emulator with the following parameters:
 
 ### The "Shot" library
 To execute screenshot tests which uses the ["shot"](https://github.com/pedrovgs/Shot) library, we can use the following commands:
-- `./gradlew :app:debugExecuteScreenshotTests` - execute all screenshot tests
-- `./gradlew :app:debugExecuteScreenshotTests -Precord` - execute all screenshot and update screenshots
+- `./gradlew :app:debugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.alexzh.moodtracker.annotation.AppScreenshotTest` - execute all screenshot tests
+- `./gradlew :app:debugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.alexzh.moodtracker.annotation.AppScreenshotTest` - execute all screenshot and update screenshots
 
 ### The "Maestro" framework
 
