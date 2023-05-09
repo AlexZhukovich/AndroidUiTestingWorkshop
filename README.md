@@ -31,13 +31,19 @@ This project requires a few environment variables which can be added in the Inte
 
 ### Android emulator
 
-I recommend to an emulator with the following characteristics: 
-- Pixel 6
-- Android 11 Google APIs
+I recommend to an emulator with the following parameters: 
+- Pixel 5
+- Android 12 Google APIs (API 31)
 
 ## Test case execution
 
+### The "Shot" library
 To execute screenshot tests which uses the ["shot"](https://github.com/pedrovgs/Shot) library, we can use the following commands:
 - `./gradlew :app:debugExecuteScreenshotTests` - execute all screenshot tests
 - `./gradlew :app:debugExecuteScreenshotTests -Precord` - execute all screenshot and update screenshots
 
+### The "Maestro" framework
+
+The "Maestro" framework includes the "Maestro Studio", you can run it by executing the `maestro studio` command.
+
+To execute test "Maestro" test cases, you can use the `maestro test --format junit e2e-flow-test` command.
