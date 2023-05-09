@@ -17,6 +17,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "com.karumi.shot.ShotTestRunner"
+        testInstrumentationRunnerArguments.putAll(
+            mapOf(
+                "clearPackageData" to "true"
+            )
+        )
         vectorDrawables { useSupportLibrary = true }
     }
 
@@ -45,6 +50,7 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.androidXComposeCompiler.get()
     }
     testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         packagingOptions {
             jniLibs {
                 useLegacyPackaging = true
@@ -96,6 +102,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
 
     androidTestImplementation(composeBom)
+    androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.bundles.androidx.compose.test)
@@ -106,4 +113,6 @@ dependencies {
     androidTestImplementation(libs.test.parameter.injector)
     androidTestImplementation(libs.android.uitesting.utils)
     androidTestImplementation(libs.mockk.android)
+
+    androidTestUtil(libs.androidx.test.orchestrator)
 }

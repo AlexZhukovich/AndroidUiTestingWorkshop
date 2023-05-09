@@ -38,6 +38,8 @@ testParameterInjector = "1.11"
 androidUiTestingUtils = "1.2.4"
 mockk = "1.12.3"
 shot = "5.13.0"
+androidXTestRunner = "1.5.2"
+androidXTestOrchestrator = "1.4.2"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -108,6 +110,8 @@ androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", ver
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidXTestRunner" }
+androidx-test-orchestrator = { module = "androidx.test:orchestrator", version.ref = "androidXTestOrchestrator" }
 test-parameter-injector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjector" }
 android-uitesting-utils = { module = "com.github.sergio-sastre:AndroidUiTestingUtils", version.ref = "androidUiTestingUtils" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
