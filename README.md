@@ -47,3 +47,12 @@ To execute screenshot tests which uses the ["shot"](https://github.com/pedrovgs/
 The "Maestro" framework includes the "Maestro Studio", you can run it by executing the `maestro studio` command.
 
 To execute test "Maestro" test cases, you can use the `maestro test --format junit e2e-flow-test` command.
+
+## Helpful links
+- [Local and Instrumentation tests in Android](https://alexzh.com/local-and-instrumentation-tests-in-android/)
+- [Testing Android Fragment in isolation](https://alexzh.com/testing-android-fragment-in-isolation/)
+- [How to group Android tests](https://alexzh.com/how-to-group-android-tests/)
+- [Get String resources in Jetpack Compose Tests](https://alexzh.com/get-string-resources-in-jetpack-compose-tests/)
+- [Jetpack Compose: Testing animations](https://alexzh.com/jetpack-compose-testing-animations/)
+- [UI testing of Android Runtime Permissions](https://alexzh.com/ui-testing-of-android-runtime-permissions/)
+- [Maestro framework: documentation](https://maestro.mobile.dev)
