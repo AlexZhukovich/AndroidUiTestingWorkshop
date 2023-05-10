@@ -76,7 +76,34 @@ class WeekCalendarColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun weekCalendar_dark_todayInSelectedDate() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.NIGHT)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    composeTestRule.mainClock.autoAdvance = false
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(400.dp, height = 200.dp)
+                                .background(MaterialTheme.colorScheme.background),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            WeekCalendar(
+                                startDate = testDate.minusDays(6),
+                                selectedDate = testDate.minusDays(1),
+                                onSelectedDateChange = {},
+                                todayDate = testDate.minusDays(1)
+                            )
+                        }
+                    }
+                }
+            }
 
+        composeTestRule.mainClock.advanceTimeBy(400)
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "weekCalendar_dark_todayInSelectedDate")
+
+        activityScenario.close()
     }
 
     /**
@@ -87,7 +114,34 @@ class WeekCalendarColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun weekCalendar_light_todayInNotSelectedDate() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.DAY)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    composeTestRule.mainClock.autoAdvance = false
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(400.dp, height = 200.dp)
+                                .background(MaterialTheme.colorScheme.background),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            WeekCalendar(
+                                startDate = testDate.minusDays(6),
+                                selectedDate = testDate.minusDays(2),
+                                onSelectedDateChange = {},
+                                todayDate = testDate.minusDays(1)
+                            )
+                        }
+                    }
+                }
+            }
 
+        composeTestRule.mainClock.advanceTimeBy(400)
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "weekCalendar_light_todayIsNotSelectedDate")
+
+        activityScenario.close()
     }
 
     /**
@@ -98,6 +152,33 @@ class WeekCalendarColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun weekCalendar_dark_todayInNotSelectedDate() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.NIGHT)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    composeTestRule.mainClock.autoAdvance = false
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(400.dp, height = 200.dp)
+                                .background(MaterialTheme.colorScheme.background),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            WeekCalendar(
+                                startDate = testDate.minusDays(6),
+                                selectedDate = testDate.minusDays(2),
+                                onSelectedDateChange = {},
+                                todayDate = testDate.minusDays(1)
+                            )
+                        }
+                    }
+                }
+            }
 
+        composeTestRule.mainClock.advanceTimeBy(400)
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "weekCalendar_dark_todayIsNotSelectedDate")
+
+        activityScenario.close()
     }
 }

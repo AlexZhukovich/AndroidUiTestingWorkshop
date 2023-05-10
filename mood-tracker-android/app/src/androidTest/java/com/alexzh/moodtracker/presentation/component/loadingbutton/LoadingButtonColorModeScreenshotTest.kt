@@ -71,7 +71,31 @@ class LoadingButtonColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun loadingButton_dark_defaultState() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.NIGHT)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(300.dp, height = 100.dp)
+                                .background(Color(51,50,51)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            LoadingButton(
+                                modifier = Modifier.width(250.dp),
+                                text = "Test button",
+                                isLoading = false,
+                                onClick = { }
+                            )
+                        }
+                    }
+                }
+            }
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "loadingButton_dark_defaultState")
 
+        activityScenario.close()
     }
 
     /**
@@ -82,7 +106,31 @@ class LoadingButtonColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun loadingButton_light_loadingState() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.DAY)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(300.dp, height = 100.dp)
+                                .background(Color(51,50,51)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            LoadingButton(
+                                modifier = Modifier.width(250.dp),
+                                text = "Test button",
+                                isLoading = true,
+                                onClick = { }
+                            )
+                        }
+                    }
+                }
+            }
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "loadingButton_light_loadingState")
 
+        activityScenario.close()
     }
 
     /**
@@ -93,6 +141,30 @@ class LoadingButtonColorModeScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun loadingButton_dark_loadingState() {
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(UiMode.NIGHT)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(300.dp, height = 100.dp)
+                                .background(Color(51,50,51)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            LoadingButton(
+                                modifier = Modifier.width(250.dp),
+                                text = "Test button",
+                                isLoading = true,
+                                onClick = { }
+                            )
+                        }
+                    }
+                }
+            }
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "loadingButton_dark_loadingState")
 
+        activityScenario.close()
     }
 }

@@ -13,6 +13,7 @@ import org.junit.runners.JUnit4
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentScenarioConfigurator
 import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
+import java.util.Locale
 
 @ExperimentalMaterial3Api
 @RunWith(JUnit4::class)
@@ -45,6 +46,17 @@ class SettingsScreenScreenshotTest : ScreenshotTest {
      */
     @Test @AppScreenshotTest
     fun settingsScreen_dark_defaultState() {
+        val fragmentScenario = FragmentScenarioConfigurator
+            .setUiMode(UiMode.NIGHT)
+            .setTheme(R.style.Theme_MoodTracker)
+            .launchInContainer(
+                SettingsFragment::class.java
+            )
 
+        compareScreenshot(
+            fragment = fragmentScenario.waitForFragment(),
+            name = "settingsScreen_dark"
+        )
+        fragmentScenario.close()
     }
 }
