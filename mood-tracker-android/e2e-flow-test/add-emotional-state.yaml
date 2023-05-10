@@ -1,0 +1,5 @@
+# Add note -> verify activity and time
+appId: com.alexzh.moodtracker
+---
+- launchApp:
+    clearState: true
