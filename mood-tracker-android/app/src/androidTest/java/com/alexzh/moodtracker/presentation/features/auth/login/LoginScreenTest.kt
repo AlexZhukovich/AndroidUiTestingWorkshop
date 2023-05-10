@@ -70,6 +70,22 @@ class LoginScreenTest : KoinTest {
      */
     @Test
     fun displayPasswordIsTooShortError_whenEnteredPasswordIsShorterThanFourSymbols() {
+        launchFragmentInContainer<LoginFragment>(
+            themeResId = R.style.Theme_MoodTracker
+        )
 
+        composeTestRule.apply {
+            onNodeWithText("Email")
+                .performTextInput("t@t.com")
+
+            onNodeWithText("Password")
+                .performTextInput("abc")
+
+            onNodeWithText("LOGIN")
+                .performClick()
+
+            onNodeWithText("The 'Password' should be at least four characters long")
+                .assertIsDisplayed()
+        }
     }
 }

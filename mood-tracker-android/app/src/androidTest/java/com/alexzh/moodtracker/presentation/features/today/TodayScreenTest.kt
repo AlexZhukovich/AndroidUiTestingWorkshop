@@ -16,6 +16,7 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.alexzh.moodtracker.R
+import com.alexzh.moodtracker.annotation.AppScreenshotTest
 import com.alexzh.moodtracker.data.EmotionHistoryRepository
 import com.alexzh.moodtracker.data.util.Result
 import com.alexzh.moodtracker.di.appModule
@@ -24,6 +25,8 @@ import com.alexzh.moodtracker.presentation.core.date.DateProvider
 import com.alexzh.moodtracker.presentation.core.date.DateProviderImpl
 import com.alexzh.moodtracker.presentation.feature.today.TodayFragment
 import com.alexzh.moodtracker.testdata.EmotionHistoryTestData
+import com.karumi.shot.FragmentScenarioUtils.waitForFragment
+import com.karumi.shot.ScreenshotTest
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,13 +40,14 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
+import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
 import java.time.LocalDate
 
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-class TodayScreenTest : KoinTest {
+class TodayScreenTest : KoinTest, ScreenshotTest {
     private val emotionHistoryRepo = mockk<EmotionHistoryRepository>(relaxed = true)
     private val testDate = LocalDate.of(2023, 5, 10)
 
@@ -82,6 +86,8 @@ class TodayScreenTest : KoinTest {
         )
 
         composeTestRule.apply {
+            onRoot().printToLog("MERGED")
+
             onNode(withEmotionStateAndNote("Excited", "Test note"))
                 .assert(hasAnyChild(hasText("Work")))
         }
@@ -90,16 +96,28 @@ class TodayScreenTest : KoinTest {
     /**
      * Create a test case that shows multiple emotional state items on the screen.
      */
-    @Test
+    @Test @AppScreenshotTest
     fun displaySuccessWithMultipleItems_whenDataIsAvailable() {
         every { emotionHistoryRepo.getEmotionsHistoryByDate(any(), any()) } returns
                 flowOf(Result.Success(EmotionHistoryTestData.EMOTION_HISTORY_ITEMS(testDate)))
 
-        launchFragmentInContainer<TodayFragment>(
+        val fragmentScenario = launchFragmentInContainer<TodayFragment>(
             themeResId = R.style.Theme_MoodTracker
         )
 
+        composeTestRule.apply {
+            onNode(withEmotionStateAndNote("Excited", "Test note 1"))
+                .assert(hasAnyChild(hasText("Work")))
 
+            onNode(withEmotionStateAndNote("Neutral", "Test note 2"))
+                .assert(hasAnyChild(hasText("Work")))
+                .assert(hasAnyChild(hasText("Shopping")))
+        }
+
+        compareScreenshot(
+            fragment = fragmentScenario.waitForFragment(),
+            name = "todayScreen_multipleItems"
+        )
     }
 
     /**
@@ -110,11 +128,18 @@ class TodayScreenTest : KoinTest {
         every { emotionHistoryRepo.getEmotionsHistoryByDate(any(), any()) } returns
                 flowOf(Result.Success(emptyList()))
 
-        launchFragmentInContainer<TodayFragment>(
+        val fragmentScenario = launchFragmentInContainer<TodayFragment>(
             themeResId = R.style.Theme_MoodTracker
         )
 
-
+        composeTestRule.apply {
+            onNodeWithText("No data")
+                .assertIsDisplayed()
+        }
+        compareScreenshot(
+            fragment = fragmentScenario.waitForFragment(),
+            name = "todayScreen_noData"
+        )
     }
 
     private fun withEmotionStateAndNote(

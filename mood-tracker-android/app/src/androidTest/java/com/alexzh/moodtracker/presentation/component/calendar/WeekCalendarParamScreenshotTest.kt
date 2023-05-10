@@ -41,6 +41,37 @@ class WeekCalendarParamScreenshotTest(
      */
     @Test @AppScreenshotTest
     fun weekCalendar_paramUiModeAndSelectedDate() {
+        val todayDate = if (todayIsSelectedDate) testDate.minusDays(1)
+            else testDate.minusDays(2)
+        val todayIsSelectedDateDescription = if (todayIsSelectedDate) "todayIsSelectedDate" else "todayIsNotSelectedDate"
 
+        val activityScenario = ActivityScenarioConfigurator.ForComposable()
+            .setUiMode(uiMode)
+            .launchConfiguredActivity()
+            .onActivity {
+                it.setContent {
+                    composeTestRule.mainClock.autoAdvance = false
+                    AppTheme {
+                        Box(
+                            modifier = Modifier.size(400.dp, height = 200.dp)
+                                .background(MaterialTheme.colorScheme.background),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            WeekCalendar(
+                                startDate = testDate.minusDays(6),
+                                selectedDate = testDate.minusDays(1),
+                                onSelectedDateChange = {},
+                                todayDate = todayDate
+                            )
+                        }
+                    }
+                }
+            }
+
+        composeTestRule.mainClock.advanceTimeBy(400)
+        activityScenario.waitForActivity()
+        compareScreenshot(composeTestRule, "weekCalendar_${uiMode}_${todayIsSelectedDateDescription}")
+
+        activityScenario.close()
     }
 }

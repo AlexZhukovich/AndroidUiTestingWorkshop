@@ -11,6 +11,7 @@ import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentScenarioConfigurator
@@ -33,6 +34,18 @@ class SettingsScreenParamScreenshotTest(
      */
     @Test @AppScreenshotTest
     fun settingsScreen_customFontSizeAnUiMode() {
+        val fragmentScenario = FragmentScenarioConfigurator
+            .setUiMode(uiMode)
+            .setFontSize(fontSize)
+            .setTheme(R.style.Theme_MoodTracker)
+            .launchInContainer(
+                SettingsFragment::class.java
+            )
 
+        compareScreenshot(
+            fragment = fragmentScenario.waitForFragment(),
+            name = "settingsScreen_${uiMode}_${fontSize}"
+        )
+        fragmentScenario.close()
     }
 }

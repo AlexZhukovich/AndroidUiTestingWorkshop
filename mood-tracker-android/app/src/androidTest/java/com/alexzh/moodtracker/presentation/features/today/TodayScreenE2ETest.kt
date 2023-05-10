@@ -24,8 +24,10 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import com.alexzh.moodtracker.presentation.feature.home.HomeActivity
+import io.mockk.every
 import org.junit.Rule
 import org.junit.Test
+import java.util.UUID
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
@@ -41,6 +43,8 @@ class TodayScreenE2ETest {
      */
     @Test
     fun displayEmotion_WhenEmotionHistoryWasAddedViaAddMoodScreen() {
+        val note = UUID.randomUUID().toString()
+
         ActivityScenario.launch(HomeActivity::class.java)
         composableTestRule.apply {
             waitUntil {
@@ -66,7 +70,7 @@ class TodayScreenE2ETest {
                 .performClick()
 
             onNodeWithText("Note")
-                .performTextInput("Test note")
+                .performTextInput(note)
 
             onNode(hasText("Save"))
                 .performScrollTo()
@@ -77,7 +81,7 @@ class TodayScreenE2ETest {
                     .fetchSemanticsNodes().size == 1
             }
 
-            onNode(withEmotionStateAndNote("Happy", "Test note"))
+            onNode(withEmotionStateAndNote("Happy", note))
                 .assert(hasAnyChild(hasText("Reading")))
                 .assert(hasAnyChild(hasText("Gaming")))
 
