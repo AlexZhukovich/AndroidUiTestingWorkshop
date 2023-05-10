@@ -1,1 +1,25 @@
 # Add note -> verify activity and time -> change time format -> verify activity and time
+appId: com.alexzh.moodtracker
+---
+- launchApp:
+    clearState: true
+- tapOn: "Add"
+- tapOn: "Excited"
+- tapOn: "Select a time"
+- tapOn: "16"
+- tapOn: "15"
+- tapOn: "OK"
+# test
+- tapOn: "Gaming"
+- tapOn: "Save"
+- assertVisible: "16:15"
+- assertVisible: "Gaming"
+- tapOn:
+    id: "com.alexzh.moodtracker:id/navigation_bar_item_icon_view"
+    index: 3
+- tapOn: "Use 24h format"
+- tapOn:
+    id: "com.alexzh.moodtracker:id/navigation_bar_item_icon_container"
+    index: 1
+- assertVisible: "04:15 PM"
+- assertVisible: "Gaming"
