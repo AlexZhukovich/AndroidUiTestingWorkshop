@@ -21,5 +21,84 @@ import androidx.test.espresso.matcher.ViewMatchers
 open class BaseOperations(
     private val composeTestRule: ComposeTestRule
 ) {
+    fun waitForText(text: String) {
+        composeTestRule.apply {
+            waitUntil {
+                onAllNodesWithText(text)
+                    .fetchSemanticsNodes().size == 1
+            }
+        }
+    }
 
+    fun waitForContentDescription(contentDescription: String) {
+        composeTestRule.apply {
+            waitUntil {
+                onAllNodesWithContentDescription(contentDescription)
+                    .fetchSemanticsNodes().size == 1
+            }
+        }
+    }
+
+    fun clickOnNodeWithContentDescription(contentDescription: String) {
+        composeTestRule.apply {
+            onNode(hasContentDescription(contentDescription))
+                .performClick()
+        }
+    }
+
+    fun clickOnNodeWithText(text: String) {
+        composeTestRule.apply {
+            onNode(hasText(text))
+                .performClick()
+        }
+    }
+
+    fun semanticClickOnNodeWithContentDescription(contentDescription: String) {
+        composeTestRule.apply {
+            onNode(hasContentDescription(contentDescription))
+                .performSemanticsAction(SemanticsActions.OnClick)
+        }
+    }
+
+    fun enterNote(nodeText: String, note: String) {
+        composeTestRule.apply {
+            onNodeWithText(nodeText)
+                .performTextInput(note)
+        }
+    }
+
+    fun scrollAndClickOnNodeWithText(text: String) {
+        composeTestRule.apply {
+            onNode(hasText(text))
+                .performScrollTo()
+                .performClick()
+        }
+    }
+
+    fun clickOnToolbarIcon(contentDescription: String) {
+        Espresso.onView(ViewMatchers.withContentDescription(contentDescription))
+            .perform(ViewActions.click())
+    }
+
+    fun hasEmotionStateItem(
+        emotionState: String,
+        note: String,
+        activities: List<String>
+    ) {
+        composeTestRule.apply {
+            onNode(withEmotionStateAndNote(emotionState, note)).apply {
+                activities.forEach {
+                    this.assert(hasAnyChild(hasText(it)))
+                }
+            }
+        }
+    }
+
+    private fun withEmotionStateAndNote(
+        emotionState: String,
+        note: String
+    ): SemanticsMatcher {
+        return hasText(note)
+            .and(hasContentDescription(emotionState))
+    }
 }
